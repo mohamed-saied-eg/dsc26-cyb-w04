@@ -77,7 +77,7 @@ def main(argv=None) -> int:
             entries = _read_json(args.suppressions)
             if not isinstance(entries, list):
                 raise ValueError("suppressions must be a JSON list")
-    except (OSError, ValueError, KeyError, TypeError, IndexError):
+    except (OSError, ValueError, KeyError, TypeError, IndexError, AttributeError):
         return 2
 
     groups = dedupe(findings, equivalences)
