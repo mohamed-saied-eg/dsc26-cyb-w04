@@ -1,22 +1,12 @@
-# AI usage: dsc26-cyb-w04
-
-Keep the three headings below exactly as they are. The grader stops and scores 0 if this file is
-missing or any of the three headings is missing. It does not score what you write; your Track
-Mentor reads it, and the W8 defence can ask about it.
-
 ## Tools
-
-<!-- Which AI tools you used (or "none"), and for which parts of the task. -->
+I used Claude (Anthropic) as a tutor to walk through the task step by step: the design of each function in triage/core.py and the CLI. I ran the tests and the CLI myself on my machine.
 
 ## What AI got wrong
-
-<!-- At least one thing an AI tool got wrong that you changed, and how you noticed:
-     a test, the docs, running it. -->
+- It suggested the Linux command `ls` and `source .venv/bin/activate`, which do not work in Windows CMD. I had to use `dir` and `.venv\Scripts\activate`.
+- It first told me to download a starter zip from the task page, but there was no download link. The task actually uses a template repository, so I had to create my repo from the template instead.
 
 ## In my own words
-
-<!-- One or two sentences each, written without AI. -->
-
-1. Bandit rates the MD5 in `etag()` HIGH and `DB_PASSWORD` LOW. Which would you fix first in Diwan's code, and why?
-
-2. Why does a suppression need an expiry date?
+1. Why fix `DB_PASSWORD` first?
+It's an active production credential exposed in Git, posing an immediate risk. MD5 in `etag()` is just a false positive for HTTP caching (and remember to rotate the password since it's in the commit history).
+2. Why must a suppression have an expiration date?
+Code changes over time, making old justifications invalid. An expiration date forces the team to review and properly fix the security issue later instead of forgetting it.
