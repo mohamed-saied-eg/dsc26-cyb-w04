@@ -6,12 +6,13 @@
 - Python 3.12, standard library only. Do not add packages or edit requirements.txt.
 
 ## Where things are
-- Full spec of every function and the hidden-test table: README.md (read it when implementing, not up front)
 - All code is in `triage/` (core.py holds every function; keep names and signatures)
+- Full spec of every function and the hidden-test table: README.md (read it when implementing, not up front)
 - `fixtures/` is replaced by the grader. Never edit it.
 - `AI_USAGE.md` must keep the headings `## Tools`, `## What AI got wrong`, `## In my own words`
 
 ## Conventions that differ from defaults
+- Finding, Group and Suppression are dataclasses in triage/core.py (use attributes, not .get). apply_suppressions keeps input order.
 - Fingerprint = sha256 of `tool|rule_id|path|code` (whitespace collapsed). Never include the line number.
 - Severity order, lowest to highest: info, low, medium, high, critical.
 - A suppression that expires today still applies (`expires >= today`).
